@@ -14,5 +14,13 @@
         {% endfor %}
     </ul>
 
+    <form action="{% url 'core_movrotativos_novos' %}" method="POST">
+        {% csrf_token %}
+
+        {{ forms.as_p }}
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
 </body>
 </html>

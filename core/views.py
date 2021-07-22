@@ -7,7 +7,7 @@ from .models import (
     MovMensalista,
 )
 
-from .forms import PessoaForm, VeiculoForm
+from .forms import PessoaForm, VeiculoForm, MovRotativoForm
 
 # Create your views here.
 
@@ -42,10 +42,18 @@ def veiculos_novos(request):
         form.save()
         return redirect('core_lista_veiculos')
 
-
+    # MOVIMENTOS ROTATIVOS #
 def lista_movrotativos(request):
     mov_rotativos = MovRotativo.objects.all()
-    return render(request, 'core/lista_movrotativos.html', {'mov_rotativos': mov_rotativos})
+    forms = MovRotativoForm()
+    data = {'mov_rotativos': mov_rotativos, 'forms': forms}
+    return render(request, 'core/lista_movrotativos.html', data)
+
+def movrotativos_novos(request):
+    form = MovRotativoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('core_lista_movrotativos')
 
 
 def lista_mensalistas(request):
