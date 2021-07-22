@@ -12,16 +12,17 @@ from .forms import (
     VeiculoForm,
     MovRotativoForm,
     MensalistaForm,
+    MovMensalistaForm,
 )
 
 # Create your views here.
 
-    # HOME PAGE #
+# HOME PAGE #
 def home(request):
     context = {'mensagem': 'Olá Mundo'}
     return render(request, 'core/index.html', context)
 
-    # PESSOAS #
+# PESSOAS #
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     forms = PessoaForm()
@@ -34,7 +35,7 @@ def pessoas_novas(request):
         form.save()
         return redirect('core_lista_pessoas')
 
-    # VEICULOS #
+# VEICULOS #
 def lista_veiculos(request):
     veiculos = Veiculo.objects.all()
     forms = VeiculoForm()
@@ -47,7 +48,7 @@ def veiculos_novos(request):
         form.save()
         return redirect('core_lista_veiculos')
 
-    # MOVIMENTOS ROTATIVOS #
+# MOVIMENTOS ROTATIVOS #
 def lista_movrotativos(request):
     mov_rotativos = MovRotativo.objects.all()
     forms = MovRotativoForm()
@@ -60,7 +61,7 @@ def movrotativos_novos(request):
         form.save()
         return redirect('core_lista_movrotativos')
 
-    # MENSALISTAS #
+# MENSALISTAS #
 def lista_mensalistas(request):
     mensalistas = Mensalista.objects.all()
     forms = MensalistaForm()
@@ -73,8 +74,15 @@ def mensalistas_novos(request):
         form.save()
         return redirect('core_lista_mensalistas')
 
-
+# MOVIMENTOS MENSAIS #
 def lista_movmensalistas(request):
     mov_mensalistas = MovMensalista.objects.all()
-    return render(request, 'core/lista_movmensalistas.html', {'mov_mensalistas': mov_mensalistas})
+    forms = MovMensalistaForm()
+    data = {'mov_mensalistas': mov_mensalistas, 'forms': forms}
+    return render(request, 'core/lista_movmensalistas.html', data)
 
+def movmensal_novos(request):
+    form = MovMensalistaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('core_lista_movmensalistas')
