@@ -7,15 +7,16 @@ from .models import (
     MovMensalista,
 )
 
-from .forms import PessoaForm
+from .forms import PessoaForm, VeiculoForm
 
 # Create your views here.
 
+    # HOME PAGE #
 def home(request):
     context = {'mensagem': 'Olá Mundo'}
     return render(request, 'core/index.html', context)
 
-
+    # PESSOAS #
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     forms = PessoaForm()
@@ -28,10 +29,18 @@ def pessoas_novas(request):
         form.save()
         return redirect('core_lista_pessoas')
 
-
+    # VEICULOS #
 def lista_veiculos(request):
     veiculos = Veiculo.objects.all()
-    return render(request, 'core/lista_veiculos.html', {'veiculos': veiculos})
+    forms = VeiculoForm()
+    data = {'veiculos': veiculos, 'forms': forms}
+    return render(request, 'core/lista_veiculos.html', data)
+
+def veiculos_novos(request):
+    form = VeiculoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('core_lista_veiculos')
 
 
 def lista_movrotativos(request):
