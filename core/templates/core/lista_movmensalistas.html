@@ -10,7 +10,9 @@
 
     <ul>
         {% for mov in mov_mensalistas %}
-            <li>{{ mov.mensalista }}</li>
+            <li>
+                <a href="{% url 'core_movmensal_update' mov.id %}">{{ mov.mensalista }}</a>
+            </li>
         {% endfor %}
     </ul>
 

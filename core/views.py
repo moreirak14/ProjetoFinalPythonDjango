@@ -142,3 +142,17 @@ def movmensal_novos(request):
     if form.is_valid():
         form.save()
         return redirect('core_lista_movmensalistas')
+
+def movmensal_update(request, id):
+    data = {}
+    movmensal = MovMensalista.objects.get(id=id)
+    form = MovMensalistaForm(request.POST or None, instance=movmensal)
+    data['movmensal'] = movmensal
+    data['forms'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_movmensalistas')
+    else:
+        return render(request, 'core/movmensal_update.html', data)
