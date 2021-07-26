@@ -6,15 +6,15 @@
 </head>
 <body>
 
-  <h2>Updating Pessoa: {{ pessoas }}</h2>
+    <h2>Updating Pessoa: {{ pessoas }}</h2>
 
-  <form action="{% url 'core_pessoa_update' pessoas.id %}" method="POST">
-    {% csrf_token %}
+    <form action="{% url 'core_pessoas_update' pessoas.id %}" method="POST">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
 
-      {{ forms.as_p }}
-
-    <button type="submit">Salvar</button>
-  </form>
+    <a href="{% url 'core_pessoas_delete' pessoas.id %}">Deletar</a>
 
 </body>
 </html>
