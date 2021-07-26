@@ -10,7 +10,9 @@
 
     <ul>
         {% for mensalista in mensalistas %}
-            <li>{{ mensalista.veiculo }}</li>
+            <li>
+                <a href="{% url 'core_mensalistas_update' mensalista.id %}">{{ mensalista.veiculo }}</a>
+            </li>
         {% endfor %}
     </ul>
 

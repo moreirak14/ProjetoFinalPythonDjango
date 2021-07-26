@@ -116,6 +116,20 @@ def mensalistas_novos(request):
         form.save()
         return redirect('core_lista_mensalistas')
 
+def mensalistas_update(request, id):
+    data = {}
+    mensalistas = Mensalista.objects.get(id=id)
+    form = MensalistaForm(request.POST or None, instance=mensalistas)
+    data['mensalistas'] = mensalistas
+    data['forms'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/mensalistas_update.html', data)
+
 # MOVIMENTOS MENSAIS #
 def lista_movmensalistas(request):
     mov_mensalistas = MovMensalista.objects.all()
