@@ -119,6 +119,14 @@ def movrotativos_update(request, id):
     else:
         return render(request, 'core/movrotativos_update.html', data)
 
+def movrotativos_delete(request, id):
+    movrotativos = MovRotativo.objects.get(id=id)
+    if request.method == 'POST':
+            movrotativos.delete()
+            return redirect('core_lista_movrotativos')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': movrotativos})
+
 # MENSALISTAS #
 def lista_mensalistas(request):
     mensalistas = Mensalista.objects.all()
@@ -146,6 +154,14 @@ def mensalistas_update(request, id):
     else:
         return render(request, 'core/mensalistas_update.html', data)
 
+def mensalistas_delete(request, id):
+    mensalistas = Mensalista.objects.get(id=id)
+    if request.method == 'POST':
+            mensalistas.delete()
+            return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': mensalistas})
+
 # MOVIMENTOS MENSAIS #
 def lista_movmensalistas(request):
     mov_mensalistas = MovMensalista.objects.all()
@@ -172,3 +188,11 @@ def movmensal_update(request, id):
             return redirect('core_lista_movmensalistas')
     else:
         return render(request, 'core/movmensal_update.html', data)
+
+def movmensal_delete(request, id):
+    movmensal = MovMensalista.objects.get(id=id)
+    if request.method == 'POST':
+            movmensal.delete()
+            return redirect('core_lista_movmensalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': movmensal})
