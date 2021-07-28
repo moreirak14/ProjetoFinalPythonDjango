@@ -1,5 +1,4 @@
 asgiref==3.4.1
-cx-Freeze==6.7
 cx-Logging==3.0
 dj-database-url==0.5.0
 dj-static==0.0.6
