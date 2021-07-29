@@ -5,6 +5,8 @@
     <title>Mensalistas Update</title>
 </head>
 <body>
+{% extends 'base.html' %}
+{% block main %}
 
   <h2>Updating Mensalistas: {{ mensalistas }}</h2>
 
@@ -18,5 +20,6 @@
 
     <a href="{% url 'core_mensalistas_delete' mensalistas.id %}">Deletar</a>
 
+{% endblock %}
 </body>
 </html>

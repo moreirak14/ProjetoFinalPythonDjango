@@ -5,6 +5,8 @@
     <title>Movimentação Mensalistas Update</title>
 </head>
 <body>
+{% extends 'base.html' %}
+{% block main %}
 
   <h2>Updating MovMensalistas: {{ movmensal }}</h2>
 
@@ -18,5 +20,6 @@
 
     <a href="{% url 'core_movmensal_delete' movmensal.id %}">Deletar</a>
 
+{% endblock %}
 </body>
 </html>

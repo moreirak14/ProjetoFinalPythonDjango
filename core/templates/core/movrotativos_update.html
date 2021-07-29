@@ -5,6 +5,8 @@
     <title>Movimentos Rotativos Update</title>
 </head>
 <body>
+{% extends 'base.html' %}
+{% block main %}
 
   <h2>Updating MovRotativos: {{ movrotativos }}</h2>
 
@@ -18,5 +20,6 @@
 
     <a href="{% url 'core_movrotativos_delete' movrotativos.id %}">Deletar</a>
 
+{% endblock %}
 </body>
 </html>
