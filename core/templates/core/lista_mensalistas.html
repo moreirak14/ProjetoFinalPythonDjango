@@ -6,25 +6,26 @@
 </head>
 <body>
 {% extends 'base.html' %}
+{% load bootstrap %}
 {% block main %}
 
+<div class="row">
+    <div class="col">
       <h2>Lista de Mensalistas</h2>
-
-    <ul>
-        {% for mensalista in mensalistas %}
-            <li>
-                <a href="{% url 'core_mensalistas_update' mensalista.id %}">{{ mensalista.veiculo }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <form action="{% url 'core_mensalistas_novos' %}" method="POST">
-        {% csrf_token %}
-
-        {{ forms.as_p }}
-
-        <button type="submit">Cadastrar</button>
-    </form>
+      <ul>
+          {% for mensalista in mensalistas %}
+          <li>
+              <a href="{% url 'core_mensalistas_update' mensalista.id %}">{{ mensalista.veiculo }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      <form action="{% url 'core_mensalistas_novos' %}" method="POST">
+          {% csrf_token %}
+          {{ forms | bootstrap }}
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </form>
+    </div>
+</div>
 
 {% endblock %}
 </body>
