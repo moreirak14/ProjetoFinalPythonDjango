@@ -7,15 +7,36 @@
 <body>
 {% extends 'base.html' %}
 {% load bootstrap %}
-{% block main %}
 
-<div class="row">
-    <div class="col">
-        <h2>Sejam bem-vindos ao nosso sistema de estacionamento inteligente</h2>
-        <a href="/admin">Clique aqui para entrar</a>
-    </div>
-</div>
-
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'core.home' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a>
+                <a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Veículos</a>
+                <a class="dropdown-item" href="{% url 'core_lista_movrotativos' %}">Rotativos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+    </ul>
 {% endblock%}
+
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <h2>Sejam bem-vindos ao nosso sistema de estacionamento inteligente</h2>
+            <a href="/admin">Clique aqui para entrar</a>
+        </div>
+    </div>
+{% endblock%}
+
 </body>
 </html>
