@@ -5,8 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block main %}
 
-    {{mensagem}}
+<div class="row">
+    <div class="col">
+        <h2>Sejam bem-vindos ao nosso sistema de estacionamento inteligente</h2>
+        <a href="/admin">Clique aqui para entrar</a>
+    </div>
+</div>
 
+{% endblock%}
 </body>
 </html>
