@@ -32,14 +32,28 @@
 {% block main %}
 <div class="row">
     <div class="col">
-        <h2>Movimento Mensalistas</h2>
-        <ul>
-            {% for mov in mov_mensalistas %}
-                <li>
-                    <a href="{% url 'core_movmensal_update' mov.id %}">{{ mov.mensalista }}</a>
-                </li>
-            {% endfor %}
-        </ul>
+        <!-- <h2>Movimento Mensalistas</h2> -->
+        <table class="table">
+             <h2>Lista de Movimento Mensalistas</h2>
+             <thead class="thead-dark">
+             <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Mensalista</th>
+                 <th scope="col">Data do Pagamento</th>
+                 <th scope="col">Valor Total</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for mov in mov_mensalistas %}
+             <tr>
+                 <th scope="row">{{ mov.id }}</th>
+                 <td>{{ mov.mensalista }}</td>
+                 <td>{{ mov.dt_pgto }}</td>
+                 <td>R$ {{ mov.total }}</td>
+             </tr>
+             {% endfor %}
+             </tbody>
+        </table>
         <form action="{% url 'core_movmensal_novos' %}" method="POST">
             {% csrf_token %}
             {{ forms | bootstrap }}

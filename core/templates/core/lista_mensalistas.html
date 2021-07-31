@@ -32,14 +32,28 @@
 {% block main %}
 <div class="row">
     <div class="col">
-      <h2>Lista de Mensalistas</h2>
-      <ul>
-          {% for mensalista in mensalistas %}
-          <li>
-              <a href="{% url 'core_mensalistas_update' mensalista.id %}">{{ mensalista.veiculo }}</a>
-          </li>
-          {% endfor %}
-        </ul>
+      <!-- <h2>Lista de Mensalistas</h2> -->
+      <table class="table">
+             <h2>Lista de Mensalistas</h2>
+             <thead class="thead-dark">
+             <tr>
+                 <th scope="col">ID</th>
+                 <th scope="col">Veiculo</th>
+                 <th scope="col">Inicio</th>
+                 <th scope="col">Valor Mensal</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for mensalista in mensalistas %}
+             <tr>
+                 <th scope="row">{{ mensalista.id }}</th>
+                 <td>{{ mensalista.veiculo }}</td>
+                 <td>{{ mensalista.inicio }}</td>
+                 <td>R$ {{ mensalista.valor_mes }}</td>
+             </tr>
+             {% endfor %}
+             </tbody>
+      </table>
       <form action="{% url 'core_mensalistas_novos' %}" method="POST">
           {% csrf_token %}
           {{ forms | bootstrap }}
