@@ -135,6 +135,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Login django
-LOGIN_URL = 'core.home'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'core.home'
 LOGOUT_REDIRECT_URL = 'core.home'
